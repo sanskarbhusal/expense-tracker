@@ -1,10 +1,10 @@
-import { Elysia } from "elysia"
+import "dotenv/config"
+import { Elysia, status } from "elysia"
 import { auth } from "./service"
 import { SignUpModel } from "./model"
 
 export default new Elysia()
     .post("/signup", async ({ body }) => {
-        console.log("API hit")
         const response = await auth.signUP(body)
         return response
     }, {
