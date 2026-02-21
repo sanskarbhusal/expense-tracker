@@ -1,15 +1,21 @@
-# Elysia with Bun runtime
+# Installation Instruction
+**Author**: `Sanskar Bhusal` <br>
+**Project**: Expense Tracker
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
+## Installation Instruction
+1. clone the repository
 ```bash
-bun create elysia ./elysia-example
+git clone git@github.com:sanskarbhusal/expense-tracker.git
 ```
+2. Install packages 
 
-## Development
-To start the development server run:
 ```bash
-bun run dev
+cd expense-tracker
+bun install
 ```
-
-Open http://localhost:3000/ with your browser to see the result.
+3. Start the server
+```bash
+bun start
+```
+4. You can then access the API at: <br>
+[http://localhost:5173](http://localhost:3000)

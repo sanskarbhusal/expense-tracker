@@ -2,7 +2,7 @@
   "name": "expense-tracker",
   "version": "1.0.50",
   "scripts": {
-    "dev": "bun run --watch src/index.ts"
+    "start": "bun run --watch src/index.ts"
   },
   "dependencies": {
     "@types/bcrypt": "^6.0.0",
