@@ -1,5 +1,6 @@
 import { status } from "elysia"
 import type { SignUpModel } from "./model";
+import { db } from "../../db/pool";
 
 export abstract class auth {
     static async signUP({ email, password }: SignUpModel.signUpBody) {

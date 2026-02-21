@@ -2,9 +2,9 @@ import { Elysia } from "elysia"
 import { auth } from "./service"
 import { SignUpModel } from "./model"
 
-new Elysia()
+export default new Elysia()
     .post("/signup", async ({ body }) => {
-        console.log("Pass")
+        console.log("API hit")
         const response = await auth.signUP(body)
         return response
     }, {
@@ -13,5 +13,4 @@ new Elysia()
             200: SignUpModel.signUpResponse,
             422: SignUpModel.signUpInvalid
         }
-    }).listen(3000)
-console.log("Listening on port: ", 3000)
+    })
