@@ -1,7 +1,7 @@
 import { t } from "elysia"
 
 export namespace SignUpModel {
-    // request body DTO
+    // request body validation model
     export const signUpBody = t.Object({
         email: t.String(),
         password: t.String()
@@ -10,7 +10,7 @@ export namespace SignUpModel {
     // request body type 
     export type signUpBody = typeof signUpBody.static
 
-    // response body DTO
+    // response body validation model
     export const signUpResponse = t.Object({
         message: t.Literal("Account created")
     })
@@ -18,7 +18,7 @@ export namespace SignUpModel {
     // response body type
     export type signUpResponse = typeof signUpResponse.static
 
-    // invalid response body DTO
+    // invalid response body validation model
     export const signUpInvalid = t.Object({
         message: t.Literal("Email not available")
     })
@@ -27,30 +27,29 @@ export namespace SignUpModel {
     export type signUpInvalid = typeof signUpInvalid.static
 }
 
-export namespace SignInModal {
-    // request body DTO
-    export const signInBody = t.Object({
+export namespace LoginModel {
+    // request body validatiaon model
+    export const loginBody = t.Object({
         email: t.String(),
         password: t.String()
     })
 
     // request body type 
-    export type signInBody = typeof signInBody.static
+    export type loginBody = typeof loginBody.static
 
-    // response body DTO
-    export const signInResponse = t.Object({
+    // response body validation model
+    export const loginResponse = t.Object({
         message: t.Literal("Login successfull.")
     })
 
     // response body type
-    export type signInResponse = typeof signInResponse.static
+    export type loginResponse = typeof loginResponse.static
 
-    // invalid response body DTO
-    export const signInInvalid = t.Object({
+    // invalid response body validation model
+    export const loginInvalid = t.Object({
         message: t.Literal("Wrong email/password")
     })
 
     // invalid response body type
-    export type signUpInvalid = typeof signInInvalid.static
-
+    export type loginInvalid = typeof loginInvalid.static
 }
