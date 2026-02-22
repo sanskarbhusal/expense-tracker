@@ -17,7 +17,7 @@ export abstract class Auth {
             throw status(500, "Internal Server Error")
         }
 
-        // Elysia support throwing status() directly as errors. The 2nd argument in status() invokation is sent as response body.
+        // Elysia support throwing status() directly as errors.
         if (queryResult.length != 0) {
             throw status(422, { message: "Email not available" } satisfies SignUpModel.signUpInvalid)
         }
@@ -47,7 +47,7 @@ export abstract class Auth {
             throw status(500, "Internal Server Error")
         }
 
-        // Elysia support throwing status() directly as errors. The 2nd argument in status() invokation is sent as response body.
+        // Elysia support throwing status() directly as errors.
         if (queryResult.length == 0) {
             throw status(400, { message: "Wrong email/password" } satisfies LoginModel.loginInvalid)
         }

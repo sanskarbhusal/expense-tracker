@@ -32,6 +32,13 @@ export namespace EditModel {
     })
     // response body type
     export type responseBody = typeof responseBody.static
+
+    // invalid id response schema
+    export const invalidId = t.Object({
+        message: t.Literal("Id in not valid.")
+    })
+    // invalid id response type
+    export type invalidId = typeof invalidId.static
 }
 
 export namespace DeleteModel {
