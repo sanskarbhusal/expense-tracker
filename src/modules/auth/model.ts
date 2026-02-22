@@ -10,7 +10,7 @@ export namespace SignUpModel {
     // request body type 
     export type signUpBody = typeof signUpBody.static
 
-    // response body validation model
+    // response body schema
     export const signUpResponse = t.Object({
         message: t.Literal("Account created")
     })
@@ -18,7 +18,7 @@ export namespace SignUpModel {
     // response body type
     export type signUpResponse = typeof signUpResponse.static
 
-    // invalid response body validation model
+    // invalid response body schema
     export const signUpInvalid = t.Object({
         message: t.Literal("Email not available")
     })
@@ -28,7 +28,7 @@ export namespace SignUpModel {
 }
 
 export namespace LoginModel {
-    // request body validatiaon model
+    // request body schema
     export const loginBody = t.Object({
         email: t.String(),
         password: t.String()
@@ -37,7 +37,7 @@ export namespace LoginModel {
     // request body type 
     export type loginBody = typeof loginBody.static
 
-    // response body validation model
+    // response body schema
     export const loginResponse = t.Object({
         message: t.Literal("Login successfull.")
     })
@@ -45,7 +45,7 @@ export namespace LoginModel {
     // response body type
     export type loginResponse = typeof loginResponse.static
 
-    // invalid response body validation model
+    // invalid response body schema
     export const loginInvalid = t.Object({
         message: t.Literal("Wrong email/password")
     })

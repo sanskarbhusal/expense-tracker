@@ -10,7 +10,8 @@ export const transactionCategoryEnum = pgEnum("categories", [
     'investment',
     'transportation',
     'salary',
-    'borrowed'
+    'borrowed',
+    ""
 ])
 
 export const accountsTable = pgTable("accounts", {
@@ -20,7 +21,7 @@ export const accountsTable = pgTable("accounts", {
 
 export const transactionsTable = pgTable("transactions", {
     id: serial().primaryKey(),
-    email: varchar({ length: 255 }).references(() => accountsTable.email),
+    email: varchar({ length: 255 }).notNull().references(() => accountsTable.email),
     amount: numeric({ precision: 10, scale: 2 }).notNull(),
     transactionType: transactionTypeEnum("transaction_type").notNull(),
     category: transactionCategoryEnum().notNull(),

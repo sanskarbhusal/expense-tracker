@@ -1,11 +1,11 @@
 import "dotenv/config"
 import { Elysia, status } from "elysia"
-import { auth } from "./service"
+import { Auth } from "./service"
 import { SignUpModel, LoginModel } from "./model"
 
-export default new Elysia()
+export default new Elysia({ prefix: "/api/v1/auth" })
     .post("/signup", async ({ body }) => {
-        const response = await auth.signUP(body)
+        const response = await Auth.signUP(body)
         return response
     }, {
         body: SignUpModel.signUpBody,
@@ -14,7 +14,7 @@ export default new Elysia()
             422: SignUpModel.signUpInvalid
         }
     }).post("/signin", async ({ body }) => {
-        const response = await auth.signIn(body)
+        const response = await Auth.signIn(body)
         return response
     }, {
         body: LoginModel.loginBody,

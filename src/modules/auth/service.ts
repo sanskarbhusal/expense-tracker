@@ -5,7 +5,7 @@ import { accountsTable } from "../../db/schema"
 import { eq } from "drizzle-orm"
 import bcrypt from "bcrypt"
 
-export abstract class auth {
+export abstract class Auth {
     // controller/service for signup route
     static async signUP({ email, password }: SignUpModel.signUpBody) {
         let queryResult
