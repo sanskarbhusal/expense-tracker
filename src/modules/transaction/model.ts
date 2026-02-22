@@ -19,7 +19,19 @@ export namespace ListModel {
 }
 
 export namespace EditModel {
+    const TransactionsTableSchema = createSelectSchema(transactionsTable)
 
+    // request body schema
+    export const requestBody = TransactionsTableSchema
+    // request body type
+    export type requestBody = typeof requestBody.static
+
+    // response body schema
+    export const responseBody = t.Object({
+        message: t.Literal("Success")
+    })
+    // response body type
+    export type responseBody = typeof responseBody.static
 }
 
 export namespace DeleteModel {

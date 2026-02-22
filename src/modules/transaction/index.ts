@@ -1,6 +1,6 @@
 import { Elysia } from "elysia"
 import { Transaction } from "./service"
-import { ListModel } from "./model"
+import { EditModel, ListModel } from "./model"
 
 
 export default new Elysia({ prefix: "/api/v1/transaction" })
@@ -9,9 +9,19 @@ export default new Elysia({ prefix: "/api/v1/transaction" })
         return response
     }, {
         query: ListModel.listQuery,
-        response: ListModel.listResponse
+        response: {
+            200: ListModel.listResponse
+        }
     })
-    .patch("/edit", () => { }, {})
+    .patch("/edit", async ({ body }) => {
+        const response = await Transaction.edit(body)
+        return response
+    }, {
+        body: EditModel.requestBody,
+        response: {
+            200: EditModel.responseBody
+        }
+    })
     .delete("/delete", () => { }, {})
     .get("/getOverview/:email", () => { })
     .post("/add", () => { }, {})

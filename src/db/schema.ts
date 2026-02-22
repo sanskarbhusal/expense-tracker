@@ -19,6 +19,7 @@ export const accountsTable = pgTable("accounts", {
     passwordHash: text("password_hash").notNull()
 })
 
+// transaction date is string because the date date generation and formating is solely handled by client
 export const transactionsTable = pgTable("transactions", {
     id: serial().primaryKey(),
     email: varchar({ length: 255 }).notNull().references(() => accountsTable.email),
@@ -26,5 +27,5 @@ export const transactionsTable = pgTable("transactions", {
     transactionType: transactionTypeEnum("transaction_type").notNull(),
     category: transactionCategoryEnum().notNull(),
     transactionDescription: text("transaction_description"),
-    transactionsDate: date("transaction_date").notNull()
+    transactionDate: text("transaction_date").notNull()
 })
