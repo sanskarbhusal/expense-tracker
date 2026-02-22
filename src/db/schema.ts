@@ -1,4 +1,4 @@
-import { pgTable, pgEnum, varchar, serial, numeric, text, date, } from "drizzle-orm/pg-core";
+import { pgTable, pgEnum, varchar, serial, numeric, text, date } from "drizzle-orm/pg-core";
 
 
 export const transactionTypeEnum = pgEnum("transaction_types", ["expense", "income"])

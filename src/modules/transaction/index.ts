@@ -7,7 +7,10 @@ export default new Elysia({ prefix: "/api/v1/transaction" })
     .get("/list", async ({ query }) => {
         const response = await Transaction.list(query)
         return response
-    }, { query: ListModel.listQuery })
+    }, {
+        query: ListModel.listQuery,
+        response: ListModel.listResponse
+    })
     .patch("/edit", () => { }, {})
     .delete("/delete", () => { }, {})
     .get("/getOverview/:email", () => { })

@@ -13,7 +13,7 @@ export namespace ListModel {
     export type listQuery = typeof listQuery.static
 
     // response body schema
-    export const listResponse = t.Omit(TransactionsTableSchema, ["email"])
+    export const listResponse = t.Array(t.Omit(TransactionsTableSchema, ["email"]))
     // response body type
     export type listResponse = typeof listResponse.static
 }
