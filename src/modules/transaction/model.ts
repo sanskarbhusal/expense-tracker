@@ -2,6 +2,7 @@ import { t } from "elysia"
 import { createSelectSchema } from "drizzle-typebox"
 import { Type } from "@sinclair/typebox"
 import { transactionsTable } from "../../db/schema"
+import { DefaultLogger } from "drizzle-orm"
 
 
 export namespace ListModel {
@@ -22,26 +23,32 @@ export namespace EditModel {
     const TransactionsTableSchema = createSelectSchema(transactionsTable)
 
     // request body schema
-    export const requestBody = TransactionsTableSchema
+    export const editBody = TransactionsTableSchema
     // request body type
-    export type requestBody = typeof requestBody.static
+    export type editBody = typeof editBody.static
 
     // response body schema
-    export const responseBody = t.Object({
+    export const editResponse = t.Object({
         message: t.Literal("Success")
     })
     // response body type
-    export type responseBody = typeof responseBody.static
-
-    // invalid id response schema
-    export const invalidId = t.Object({
-        message: t.Literal("Id in not valid.")
-    })
-    // invalid id response type
-    export type invalidId = typeof invalidId.static
+    export type editResponse = typeof editResponse.static
 }
 
 export namespace DeleteModel {
+    // request params schema
+    export const deleteParams = t.Object({
+        id: t.Number()
+    })
+    // request params type
+    export type deleteParams = typeof deleteParams.static
+
+    // response body schema
+    export const deleteResponse = t.Object({
+        message: t.Literal("Success.")
+    })
+    // response body type
+    export type deleteResponse = typeof deleteResponse.static
 
 }
 

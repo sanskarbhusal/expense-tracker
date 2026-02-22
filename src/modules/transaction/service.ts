@@ -1,4 +1,4 @@
-import { ListModel, EditModel } from "./model"
+import { ListModel, EditModel, DeleteModel } from "./model"
 import { db } from "../../db/pool"
 import { transactionsTable } from "../../db/schema";
 import { eq, and } from "drizzle-orm"
@@ -29,11 +29,9 @@ export abstract class Transaction {
 
 
     // controller for /edit route
-    static async edit(body: EditModel.requestBody) {
-        let queryResult
-
+    static async edit(body: EditModel.editBody) {
         try {
-            queryResult = await db.update(transactionsTable)
+            await db.update(transactionsTable)
                 .set({
                     email: body.email,
                     amount: body.amount,
@@ -47,6 +45,17 @@ export abstract class Transaction {
             throw status(500, "Internal Server Error")
         }
 
-        return { message: "Success" } satisfies EditModel.responseBody
+        return { message: "Success" } satisfies EditModel.editResponse
+    }
+
+
+    // controller for /delete
+    static async delete({ id }: DeleteModel.deleteParams) {
+        try {
+            await db.delete(transactionsTable).where(eq(transactionsTable.id, id))
+        } catch (error) {
+            throw status(500, "Internal Server Error")
+        }
+        return { message: "Success." } satisfies DeleteModel.deleteResponse
     }
 }

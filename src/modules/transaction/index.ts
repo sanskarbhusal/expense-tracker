@@ -1,6 +1,6 @@
 import { Elysia } from "elysia"
 import { Transaction } from "./service"
-import { EditModel, ListModel } from "./model"
+import { DeleteModel, EditModel, ListModel } from "./model"
 
 
 export default new Elysia({ prefix: "/api/v1/transaction" })
@@ -17,11 +17,17 @@ export default new Elysia({ prefix: "/api/v1/transaction" })
         const response = await Transaction.edit(body)
         return response
     }, {
-        body: EditModel.requestBody,
+        body: EditModel.editBody,
         response: {
-            200: EditModel.responseBody
+            200: EditModel.editResponse
         }
     })
-    .delete("/delete", () => { }, {})
+    .delete("/:transactionId", async ({ params }) => {
+        const response = await Transaction.delete(params)
+        return response
+    }, {
+        params: DeleteModel.deleteParams,
+        response: DeleteModel.deleteResponse
+    })
     .get("/getOverview/:email", () => { })
     .post("/add", () => { }, {})
