@@ -51,7 +51,7 @@ export default function PieChart() {
             const encodedEmail = encodeURIComponent(loggedInUser as string)
             try {
                 // Read transactin overview
-                const response = await fetch(`${config.API_BASE_URL}/api/v1/transaction/getOverview/${encodedEmail}`);
+                const response = await fetch(`${config.API_BASE_URL}/api/v1/transaction/overview/${encodedEmail}`);
 
                 // Error on request fail
                 if (!response.ok) {

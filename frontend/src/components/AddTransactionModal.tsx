@@ -11,7 +11,14 @@ async function handleClick({ loggedInUser, amount, t_type, category, t_descripti
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email: loggedInUser, amount, t_type, category, t_description, t_date: new Date() })
+            body: JSON.stringify({
+                email: loggedInUser,
+                amount,
+                transactionType: t_type,
+                category,
+                transactionDescription: t_description,
+                transactionDate: new Date()
+            })
         })
 
         // parse response json payload into object
@@ -35,7 +42,7 @@ async function handleClick({ loggedInUser, amount, t_type, category, t_descripti
 
 export default function AddTransaction({ closeModal }: any) {
     // state hooks
-    const [amount, setAmount] = useState("")
+    const [amount, setAmount] = useState(Number)
     const [t_type, setType] = useState("")
     const [category, setCategory] = useState("")
     const [t_description, setDescription] = useState("")
@@ -58,7 +65,7 @@ export default function AddTransaction({ closeModal }: any) {
                     className="rounded-2xl w-1/2 h-9 text-black text-sm font-normal p-1 "
                     type="number"
                     value={amount}
-                    onChange={e => setAmount(e.target.value)}
+                    onChange={e => setAmount(Number(e.target.value))}
                 />
             </div>
 

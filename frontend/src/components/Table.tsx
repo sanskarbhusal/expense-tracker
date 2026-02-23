@@ -29,9 +29,15 @@ export default function Table() {
             if (!loggedInUser) return
             const category = searchParams.get("category") || ""
             setFilterCategory(category)
+            const encodedCategory = encodeURIComponent(category);
 
             try {
-                const response = await fetch(`${config.API_BASE_URL}/api/v1/transaction/list?email=${encodedEmail}&category=${category}`);
+                let response
+                if (category != "") {
+                    response = await fetch(`${config.API_BASE_URL}/api/v1/transaction/list?email=${encodedEmail}&category=${encodedCategory}`);
+                } else {
+                    response = await fetch(`${config.API_BASE_URL}/api/v1/transaction/list?email=${encodedEmail}`);
+                }
 
                 if (!response.ok) {
                     throw new Error("Something went wrong");
@@ -66,9 +72,9 @@ export default function Table() {
                 <tr key={item.id} style={{ backgroundColor: count % 2 == 0 ? "white" : "#E3F8ED" }} >
                     <td>Rs {item.amount}</td>
                     <td>{item.category}</td>
-                    <td>{item.t_type}</td>
-                    <td>{item.t_description}</td>
-                    <td >{format(item.t_date, "MMM d, yyyy")}
+                    <td>{item.transactionType}</td>
+                    <td>{item.transactionDescription}</td>
+                    <td >{format(item.transactionDate, "MMM d, yyyy")}
                         <EditButton rowData={rowData} />
                     </td>
                 </tr>

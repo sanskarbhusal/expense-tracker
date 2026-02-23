@@ -10,7 +10,7 @@ async function handleClick({ email, data, closeModal, setSyncTrigger }: any) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email, ...data, t_date: new Date() })
+            body: JSON.stringify({ email, ...data, transactionDate: new Date() })
         })
 
         // Error on request fail
@@ -52,14 +52,14 @@ export default function EditTransactionModal({ closeModal, rowData }: any) {
                         className="rounded-2xl w-1/2 h-9 text-black text-sm font-normal p-1 "
                         type="number"
                         value={data.amount}
-                        onChange={e => setData((prev: any) => ({ ...prev, amount: e.target.value }))}
+                        onChange={e => setData((prev: any) => ({ ...prev, amount: Number(e.target.value) }))}
                     />
                 </div>
 
                 <div className="flex justify-between gap-[3.15rem] text-md mb-1">
                     <label className="self-center">Type</label>
                     <select className="rounded-2xl w-1/2 h-9 text-black text-sm font-normal p-1 bg-white "
-                        value={data.t_type}
+                        value={data.transactionType}
                         onChange={e => setData((prev: any) => ({ ...prev, t_type: e.target.value }))}
                     >
                         <option></option>
@@ -107,7 +107,7 @@ export default function EditTransactionModal({ closeModal, rowData }: any) {
                         className="rounded-2xl w-full max-h-48 text-black text-sm font-normal p-3"
                         placeholder="Description"
                         rows={10}
-                        value={data.t_description}
+                        value={data.transactionDescription}
                         onChange={e => setData((prev: any) => ({ ...prev, t_description: e.target.value }))}
                     />
                 </div>
