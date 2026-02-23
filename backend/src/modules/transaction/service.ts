@@ -85,7 +85,14 @@ export abstract class Transaction {
             queryResult = await db.select({
                 category: transactionsTable.category,
                 sum: sql<number>`sum(${transactionsTable.amount})`
-            }).from(transactionsTable).groupBy(transactionsTable.category)
+            }).from(transactionsTable)
+                .where(
+                    and(
+                        eq(transactionsTable.email, email),
+                        eq(transactionsTable.transactionType, "expense")
+                    )
+                )
+                .groupBy(transactionsTable.category)
         } catch (error) {
             throw status(500, "Internal Server Error")
         }
@@ -96,17 +103,19 @@ export abstract class Transaction {
     // controller for /add
     static async addTransaction(body: AddModel.addBody) {
         let queryResult
-
+        console.log(Number(body.amount))
         try {
             queryResult = await db.insert(transactionsTable).values({
                 email: body.email,
-                amount: body.email,
+                amount: body.amount,
                 transactionType: body.transactionType,
                 category: body.category,
                 transactionDescription: body.transactionDescription,
                 transactionDate: body.transactionDate
             }).returning()
         } catch (error) {
+            const err = error as Error
+            console.log(err.message)
             throw status(500, "Internal Server Error")
         }
 

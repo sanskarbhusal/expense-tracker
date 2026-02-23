@@ -24,7 +24,7 @@ export default new Elysia({ prefix: "/api/v1/transaction" })
             422: EditModel.invalidId
         }
     })
-    .delete("/:transactionId", async ({ params }) => {
+    .delete("/:id", async ({ params }) => {
         const response = await Transaction.delete(params)
         return response
     }, {

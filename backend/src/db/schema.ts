@@ -1,4 +1,5 @@
-import { pgTable, pgEnum, varchar, serial, numeric, text, date } from "drizzle-orm/pg-core";
+import { integer } from "drizzle-orm/pg-core";
+import { pgTable, pgEnum, varchar, serial, text } from "drizzle-orm/pg-core";
 
 
 export const transactionTypeEnum = pgEnum("transaction_types", ["expense", "income"])
@@ -11,7 +12,7 @@ export const transactionCategoryEnum = pgEnum("categories", [
     'transportation',
     'salary',
     'borrowed',
-    ""
+    ''
 ])
 
 export const accountsTable = pgTable("accounts", {
@@ -22,10 +23,10 @@ export const accountsTable = pgTable("accounts", {
 // transaction date is string because the date date generation and formating is solely handled by client
 export const transactionsTable = pgTable("transactions", {
     id: serial().primaryKey(),
+    amount: integer().notNull(),
     email: varchar({ length: 255 }).notNull().references(() => accountsTable.email),
-    amount: numeric({ precision: 10, scale: 2 }).notNull(),
     transactionType: transactionTypeEnum("transaction_type").notNull(),
     category: transactionCategoryEnum().notNull(),
     transactionDescription: text("transaction_description"),
-    transactionDate: text("transaction_date").notNull()
+    transactionDate: text("transaction_date").notNull(),
 })

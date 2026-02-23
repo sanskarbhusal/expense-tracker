@@ -88,7 +88,8 @@ export namespace OverviewModel {
 
 export namespace AddModel {
     const TransactionsTableSchema = createInsertSchema(transactionsTable)
-
+    // const test = t.Pick(TransactionsTableSchema, ["amount"])
+    // type ktest2 = typeof test
     // request body schema
     export const addBody = t.Omit(TransactionsTableSchema, ["id"])
     // request body type

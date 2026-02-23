@@ -1,6 +1,6 @@
 {
-  "id": "8d4f2fbd-7fe9-4f7a-b47e-39d4ed25831d",
-  "prevId": "246655e9-21e5-461b-9064-caf6159d31ca",
+  "id": "06e9abd1-d3b4-4984-8864-63016efe29f6",
+  "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -39,15 +39,15 @@
           "primaryKey": true,
           "notNull": true
         },
+        "amount": {
+          "name": "amount",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
         "email": {
           "name": "email",
           "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "amount": {
-          "name": "amount",
-          "type": "numeric(10, 2)",
           "primaryKey": false,
           "notNull": true
         },
@@ -73,7 +73,7 @@
         },
         "transaction_date": {
           "name": "transaction_date",
-          "type": "date",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         }
@@ -113,7 +113,8 @@
         "investment",
         "transportation",
         "salary",
-        "borrowed"
+        "borrowed",
+        ""
       ]
     },
     "public.transaction_types": {
