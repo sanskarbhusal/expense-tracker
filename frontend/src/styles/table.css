@@ -1,0 +1,37 @@
+/* Cell border */
+td:not(thead>tr>td) {
+    border: 1px solid #125C38;
+    border-left: none;
+    border-top: none;
+}
+
+/* Date field width */
+thead>tr>:nth-child(5) {
+    width: 9.1rem;
+}
+
+/* Cell padding */
+td {
+    padding-inline: 4px
+}
+
+/* Description field */
+tbody>tr>:nth-child(4) {
+    min-width: 10rem;
+}
+
+/* Amount field */
+tbody>tr>:nth-child(1) {
+    width: 8rem;
+}
+
+/* All row of table body */
+tbody>tr {
+    height: 2.16rem;
+    text-align: center;
+}
+
+/* all table rows */
+tr {
+    cursor: pointer;
+}
