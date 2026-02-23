@@ -35,7 +35,7 @@ export abstract class Auth {
 
 
     // controller/service for signin route
-    static async signIn({ email, password }: LoginModel.loginBody) {
+    static async login({ email, password }: LoginModel.loginBody) {
         let queryResult
 
         // Check valid email and extract passwordHash if valid

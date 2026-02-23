@@ -13,8 +13,8 @@ export default new Elysia({ prefix: "/api/v1/auth" })
             200: SignUpModel.signUpResponse,
             422: SignUpModel.signUpInvalid
         }
-    }).post("/signin", async ({ body }) => {
-        const response = await Auth.signIn(body)
+    }).post("/login", async ({ body }) => {
+        const response = await Auth.login(body)
         return response
     }, {
         body: LoginModel.loginBody,
