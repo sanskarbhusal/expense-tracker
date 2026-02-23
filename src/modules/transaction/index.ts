@@ -1,6 +1,6 @@
 import { Elysia } from "elysia"
 import { Transaction } from "./service"
-import { DeleteModel, EditModel, ListModel, OverviewModel } from "./model"
+import { AddModel, DeleteModel, EditModel, ListModel, OverviewModel } from "./model"
 import { transactionCategoryEnum } from "../../db/schema"
 
 
@@ -43,4 +43,12 @@ export default new Elysia({ prefix: "/api/v1/transaction" })
             200: OverviewModel.overviewResponse
         }
     })
-    .post("/add", () => { }, {})
+    .post("/add", async ({ body }) => {
+        const response = await Transaction.addTransaction(body)
+        return response
+    }, {
+        body: AddModel.addBody,
+        response: {
+            200: AddModel.addResponse
+        }
+    })

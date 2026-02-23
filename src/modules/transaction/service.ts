@@ -6,7 +6,8 @@ import {
     ListModel,
     EditModel,
     DeleteModel,
-    OverviewModel
+    OverviewModel,
+    AddModel
 } from "./model"
 
 export abstract class Transaction {
@@ -90,5 +91,29 @@ export abstract class Transaction {
         }
 
         return queryResult
+    }
+
+    // controller for /add
+    static async addTransaction(body: AddModel.addBody) {
+        let queryResult
+
+        try {
+            queryResult = await db.insert(transactionsTable).values({
+                email: body.email,
+                amount: body.email,
+                transactionType: body.transactionType,
+                category: body.category,
+                transactionDescription: body.transactionDescription,
+                transactionDate: body.transactionDate
+            }).returning()
+        } catch (error) {
+            throw status(500, "Internal Server Error")
+        }
+
+        if (queryResult.length == 0) {
+            throw status(500, "Insertion failed.")
+        }
+
+        return { message: "Success." } satisfies AddModel.addResponse
     }
 }

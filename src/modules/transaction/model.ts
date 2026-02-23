@@ -1,5 +1,5 @@
 import { t } from "elysia"
-import { createSelectSchema } from "drizzle-typebox"
+import { createSelectSchema, createInsertSchema } from "drizzle-typebox"
 import { transactionsTable } from "../../db/schema"
 
 
@@ -16,6 +16,7 @@ export namespace ListModel {
     // response body type
     export type listResponse = typeof listResponse.static
 }
+
 
 export namespace EditModel {
     const TransactionsTableSchema = createSelectSchema(transactionsTable)
@@ -64,6 +65,7 @@ export namespace DeleteModel {
     export type invalidId = typeof invalidId.static
 }
 
+
 export namespace OverviewModel {
     const TransactionsTableSchema = createSelectSchema(transactionsTable)
 
@@ -83,7 +85,20 @@ export namespace OverviewModel {
     export type overviewResponse = typeof overviewResponse.static
 }
 
-export namespace AddModel {
 
+export namespace AddModel {
+    const TransactionsTableSchema = createInsertSchema(transactionsTable)
+
+    // request body schema
+    export const addBody = t.Omit(TransactionsTableSchema, ["id"])
+    // request body type
+    export type addBody = typeof addBody.static
+
+    // response body schema
+    export const addResponse = t.Object({
+        message: t.Literal("Success.")
+    })
+    // response body type
+    export type addResponse = typeof addResponse.static
 }
 
