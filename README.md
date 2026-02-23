@@ -1,6 +1,7 @@
 # Installation Instruction
 **Author**: `Sanskar Bhusal` <br>
-**Project**: Expense Tracker
+**Project**: Expense Tracker <br>
+**Live URL**: *https://expense-tracker.sanskarbhusal.com.np*
 
 ## Installation Instruction
 ### Install Elysia (Bun.js)
