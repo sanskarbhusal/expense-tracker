@@ -1,4 +1,4 @@
-const environment: String = "local"
+const environment: String = "production"
 
 type Config = {
     API_BASE_URL: String
@@ -8,7 +8,7 @@ let config: Config
 
 if (environment == "production") {
     config = {
-        API_BASE_URL: "https://clarity-api.sanskarbhusal.com.np"
+        API_BASE_URL: "https://expense-tracker-api.sanskarbhusal.com.np"
     }
 } else {
     config = {
