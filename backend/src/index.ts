@@ -4,7 +4,9 @@ import { Elysia } from "elysia"
 import { cors } from "@elysiajs/cors"
 
 
-new Elysia().use(auth)
+new Elysia()
+    .get("/", () => "API is working!")
+    .use(auth)
     .use(cors())
     .use(transaction)
     .listen(3000)
