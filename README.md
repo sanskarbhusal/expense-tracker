@@ -3,6 +3,10 @@
 **Project**: Expense Tracker <br>
 **Live URL**: *https://expense-tracker.sanskarbhusal.com.np*
 
+#### Test Credentials
+Email: `test@gmail.com`<br>
+Password: `test@321`
+
 ## Installation Instruction
 ### Install Elysia (Bun.js)
 1. clone the repository
