@@ -42,7 +42,7 @@ async function handleClick({ loggedInUser, amount, t_type, category, t_descripti
 
 export default function AddTransaction({ closeModal }: any) {
     // state hooks
-    const [amount, setAmount] = useState(Number)
+    const [amount, setAmount] = useState(undefined as any)
     const [t_type, setType] = useState("")
     const [category, setCategory] = useState("")
     const [t_description, setDescription] = useState("")
@@ -65,7 +65,7 @@ export default function AddTransaction({ closeModal }: any) {
                     className="rounded-2xl w-1/2 h-9 text-black text-sm font-normal p-1 "
                     type="number"
                     value={amount}
-                    onChange={e => setAmount(Number(e.target.value))}
+                    onChange={e => setAmount(e.target.value)}
                 />
             </div>
 
@@ -127,7 +127,7 @@ export default function AddTransaction({ closeModal }: any) {
             <button className="bg-[#125C38] w-20 rounded-lg p-1 text-white self-center mt-4 active:scale-95"
                 onClick={async (e) => {
                     e.preventDefault()
-                    await handleClick({ loggedInUser, amount, t_type, category, t_description, closeModal, setSyncTrigger })
+                    await handleClick({ loggedInUser, amount: Number(amount), t_type, category, t_description, closeModal, setSyncTrigger })
                 }}>
                 Add
             </button>

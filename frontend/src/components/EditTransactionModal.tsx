@@ -108,7 +108,7 @@ export default function EditTransactionModal({ closeModal, rowData }: any) {
                         placeholder="Description"
                         rows={10}
                         value={data.transactionDescription}
-                        onChange={e => setData((prev: any) => ({ ...prev, t_description: e.target.value }))}
+                        onChange={e => setData((prev: any) => ({ ...prev, transactionDescription: e.target.value }))}
                     />
                 </div>
                 <button className="bg-[#125C38] w-20 rounded-lg p-1 text-white self-center mt-4 active:scale-95"
