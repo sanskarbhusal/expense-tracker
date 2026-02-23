@@ -1,6 +1,7 @@
 import { Elysia } from "elysia"
 import { Transaction } from "./service"
-import { DeleteModel, EditModel, ListModel } from "./model"
+import { DeleteModel, EditModel, ListModel, OverviewModel } from "./model"
+import { transactionCategoryEnum } from "../../db/schema"
 
 
 export default new Elysia({ prefix: "/api/v1/transaction" })
@@ -19,7 +20,8 @@ export default new Elysia({ prefix: "/api/v1/transaction" })
     }, {
         body: EditModel.editBody,
         response: {
-            200: EditModel.editResponse
+            200: EditModel.editResponse,
+            422: EditModel.invalidId
         }
     })
     .delete("/:transactionId", async ({ params }) => {
@@ -27,7 +29,18 @@ export default new Elysia({ prefix: "/api/v1/transaction" })
         return response
     }, {
         params: DeleteModel.deleteParams,
-        response: DeleteModel.deleteResponse
+        response: {
+            200: DeleteModel.deleteResponse,
+            422: DeleteModel.invalidId
+        }
     })
-    .get("/getOverview/:email", () => { })
+    .get("/overview/:email", async ({ params }) => {
+        const response = await Transaction.getOverview(params)
+        return response
+    }, {
+        params: OverviewModel.overviewParams,
+        response: {
+            200: OverviewModel.overviewResponse
+        }
+    })
     .post("/add", () => { }, {})

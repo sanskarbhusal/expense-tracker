@@ -1,15 +1,13 @@
 import { t } from "elysia"
 import { createSelectSchema } from "drizzle-typebox"
-import { Type } from "@sinclair/typebox"
 import { transactionsTable } from "../../db/schema"
-import { DefaultLogger } from "drizzle-orm"
 
 
 export namespace ListModel {
     const TransactionsTableSchema = createSelectSchema(transactionsTable)
 
     // request query schema
-    export const listQuery = Type.Union([t.Pick(TransactionsTableSchema, ["email"]), t.Pick(TransactionsTableSchema, ["email", "category"])])
+    export const listQuery = t.Union([t.Pick(TransactionsTableSchema, ["email"]), t.Pick(TransactionsTableSchema, ["email", "category"])])
     // request query type
     export type listQuery = typeof listQuery.static
 
@@ -33,7 +31,15 @@ export namespace EditModel {
     })
     // response body type
     export type editResponse = typeof editResponse.static
+
+    // invalid id response schema
+    export const invalidId = t.Object({
+        message: t.Literal("Record for given id not found.")
+    })
+    // invalid id response type
+    export type invalidId = typeof invalidId.static
 }
+
 
 export namespace DeleteModel {
     // request params schema
@@ -50,10 +56,31 @@ export namespace DeleteModel {
     // response body type
     export type deleteResponse = typeof deleteResponse.static
 
+    // invalid id response schema
+    export const invalidId = t.Object({
+        message: t.Literal("Record for given id not found.")
+    })
+    // invalid id response type
+    export type invalidId = typeof invalidId.static
 }
 
-export namespace GetOverviewModel {
+export namespace OverviewModel {
+    const TransactionsTableSchema = createSelectSchema(transactionsTable)
 
+    // request params schema
+    export const overviewParams = t.Object({
+        email: t.String({ format: "email" })
+    })
+    // request params type
+    export type overviewParams = typeof overviewParams.static
+
+    // response body schema     
+    export const overviewResponse = t.Array(t.Object({
+        ...t.Pick(TransactionsTableSchema, ["category"]).properties,
+        sum: t.Number()
+    }))
+    // response body type
+    export type overviewResponse = typeof overviewResponse.static
 }
 
 export namespace AddModel {
