@@ -40,12 +40,12 @@ export default function LoginPage() {
     return (
         <div className="relative h-[100vh] flex flex-col justify-center gap-4 bg-[#E3F8ED]">
             <h1 className="text-3xl fixed top-0 font-extrabold font-mono text-[#125C38] m-3">
-                Clarity
+                Expense Tracker
             </h1>
             <span className="relative h-3 text-red-500 text-xl self-center font-normal">{errorMsg}</span>
             <form className="relative rounded-2xl w-[90%] sm:max-w-96 self-center flex flex-col gap-3 p-4 pl-6 pr-6 bg-[#125C38] text-white text-lg font-semibold border-[1px] border-solid border-gray-500">
                 <h2 className="text-2xl font-bold text-white mb-3">
-                    Welcome Back
+                    Welcome
                 </h2>
                 <div className="flex justify-between gap-[3.15rem] text-md mb-1">
                     <label htmlFor="email" className="self-center">Email</label>

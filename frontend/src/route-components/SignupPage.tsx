@@ -47,7 +47,7 @@ export default function SignupPage() {
     return (
         <div className="h-[100vh] flex flex-col justify-center gap-4 bg-[#E3F8ED]">
             <h1 className="text-3xl fixed top-0 font-extrabold font-mono text-[#125C38] m-3">
-                Clarity
+                Expense Tracker
             </h1>
             <span className="relative h-3 text-red-500 text-xl self-center font-normal">{errorMsg}</span>
             <form className="relative w-[90%] rounded-2xl sm:max-w-96 self-center flex flex-col gap-2 p-4 pl-6 pr-6 bg-[#125C38] text-white text-lg font-semibold border-[1px] border-solid border-gray-500">

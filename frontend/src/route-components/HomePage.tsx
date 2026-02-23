@@ -32,7 +32,7 @@ function App() {
                         <div className="w-full flex justify-between mt-2 text-2xl sm:text-3xl font-extrabold font-mono text-[#125C38] cursor-default"
                             onClick={() => { navigate("/?category=") }}
                         >
-                            Clarity
+                            Expense Tracker
                             <button className="font-black text-4xl w-[2.95rem] text-[#125C38] bg-gray-100 border-[1px] border-solid border-gray-200 hover:bg-gray-200 active:scale-90 transition-all rounded-full pt-1 "
                                 onClick={() => {
                                     setShowAddTransactionModal(true)

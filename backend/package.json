@@ -2,7 +2,8 @@
   "name": "expense-tracker",
   "version": "1.0.50",
   "scripts": {
-    "start": "bun run --watch src/index.ts"
+    "start": "bun run --watch src/index.ts",
+    "build": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile server src/index.ts"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.1",
