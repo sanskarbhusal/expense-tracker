@@ -1,11 +1,11 @@
 import { Elysia } from "elysia"
 import { Transaction } from "./service"
 import { AddModel, DeleteModel, EditModel, ListModel, OverviewModel } from "./model"
-import { transactionCategoryEnum } from "../../db/schema"
 
 
 export default new Elysia({ prefix: "/api/v1/transaction" })
     .get("/list", async ({ query }) => {
+        console.log(query)
         const response = await Transaction.list(query)
         return response
     }, {

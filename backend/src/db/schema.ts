@@ -12,7 +12,6 @@ export const transactionCategoryEnum = pgEnum("categories", [
     'transportation',
     'salary',
     'borrowed',
-    ''
 ])
 
 export const accountsTable = pgTable("accounts", {

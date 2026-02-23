@@ -14,9 +14,8 @@ export abstract class Transaction {
     // controller for /list route
     static async list(query: ListModel.listQuery) {
         let queryResult
-
         try {
-            if ("category" in query && query.category != "") {
+            if (query.category != undefined) {
                 queryResult = await db.select().from(transactionsTable).where(
                     and(
                         eq(transactionsTable.email, query.email),
@@ -84,7 +83,7 @@ export abstract class Transaction {
         try {
             queryResult = await db.select({
                 category: transactionsTable.category,
-                sum: sql<number>`sum(${transactionsTable.amount})`
+                sum: sql<string>`sum(${transactionsTable.amount})`
             }).from(transactionsTable)
                 .where(
                     and(
@@ -93,6 +92,7 @@ export abstract class Transaction {
                     )
                 )
                 .groupBy(transactionsTable.category)
+
         } catch (error) {
             throw status(500, "Internal Server Error")
         }
@@ -103,7 +103,7 @@ export abstract class Transaction {
     // controller for /add
     static async addTransaction(body: AddModel.addBody) {
         let queryResult
-        console.log(Number(body.amount))
+
         try {
             queryResult = await db.insert(transactionsTable).values({
                 email: body.email,

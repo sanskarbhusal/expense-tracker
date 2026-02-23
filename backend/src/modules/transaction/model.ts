@@ -7,7 +7,10 @@ export namespace ListModel {
     const TransactionsTableSchema = createSelectSchema(transactionsTable)
 
     // request query schema
-    export const listQuery = t.Union([t.Pick(TransactionsTableSchema, ["email"]), t.Pick(TransactionsTableSchema, ["email", "category"])])
+    export const listQuery = t.Object({
+        ...t.Pick(TransactionsTableSchema, ["email"]).properties,
+        category: t.Optional(t.Pick(TransactionsTableSchema, ["category"]).properties.category)
+    })
     // request query type
     export type listQuery = typeof listQuery.static
 
@@ -79,7 +82,7 @@ export namespace OverviewModel {
     // response body schema     
     export const overviewResponse = t.Array(t.Object({
         ...t.Pick(TransactionsTableSchema, ["category"]).properties,
-        sum: t.Number()
+        sum: t.String()
     }))
     // response body type
     export type overviewResponse = typeof overviewResponse.static
